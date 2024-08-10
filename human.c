@@ -1,16 +1,25 @@
 #include "human.h"
 
 // Will return a board that has the player input applied
-void get_human_input (Board board, Player human)
+void get_human_input (Board board, const Player *human)
 {
     Coord coord = {-1, -1}; 
     bool valid_coord = false;
 
-    printf("Human (%c), it is your turn.\n", human.icon);
+    printf("Human (%c), it is your turn:\n", human->icon);
     do {
         // Get coordinates from user
         printf("Enter coordinates (col, row from 0-2): ");
-        scanf("%hhd,%hhd", &coord.col, &coord.row);
+        int result = scanf("%hhd,%hhd", &coord.col, &coord.row);
+
+        // Clear stdin buffer if scanf fails
+        while (getchar() != '\n');
+
+        // Check if scanf successfully read two integers
+        if (result != 2) {
+            printf("Invalid input. Please enter integers separated by a comma.\n");
+            continue;
+        }
 
         // Check that coordinates are within bounds
         if (coord.row < 0 || coord.row > 2 || coord.col < 0 || coord.col > 2) {
@@ -28,5 +37,5 @@ void get_human_input (Board board, Player human)
     } while (!valid_coord);
     
     // Edit the board
-    edit_board(board, human, coord);
+    edit_board(board, human, &coord);
 }
