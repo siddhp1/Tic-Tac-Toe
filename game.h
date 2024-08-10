@@ -26,9 +26,9 @@ typedef enum {
 } GameState;
 
 // Function declarations
-bool check_for_win (Board board, Player player);
-bool check_for_draw (Board board);
-void edit_board (Board board, Player player, Coord coord);
-void print_board (Board board);
+bool check_for_win (const Board board, const Player *player);
+bool check_for_draw (const Board board);
+void edit_board (Board board, const Player *player, const Coord *coord);
+void print_board (const Board board);
 
 #endif

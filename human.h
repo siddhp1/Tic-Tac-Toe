@@ -3,6 +3,6 @@
 
 #include "game.h"
 
-void get_human_input (Board board, Player human);
+void get_human_input (Board board, const Player *human);
 
 #endif

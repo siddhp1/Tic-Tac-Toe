@@ -1,31 +1,31 @@
 #include "game.h"
 
-bool check_for_win (Board board, Player player)
+bool check_for_win (const Board board, const Player *player)
 {
     // Check rows and columns
     for (int i = 0; i < ROWS; i++){
         // Check rows
-        if (board[i][0] == player.icon && board[i][1] == player.icon && board[i][2] == player.icon) {
+        if (board[i][0] == player->icon && board[i][1] == player->icon && board[i][2] == player->icon) {
             return true;
         }
         // Check columns
-        if (board[0][i] == player.icon && board[1][i] == player.icon && board [2][i] == player.icon) {
+        if (board[0][i] == player->icon && board[1][i] == player->icon && board[2][i] == player->icon) {
             return true;
         }
     }
 
     // Check diagonals
-    if (board[0][0] == player.icon && board[1][1] == player.icon &&  board[2][2] == player.icon) {
+    if (board[0][0] == player->icon && board[1][1] == player->icon &&  board[2][2] == player->icon) {
         return true;
     }
-    if (board[0][2] == player.icon && board[1][1] == player.icon &&  board[2][0] == player.icon) {
+    if (board[0][2] == player->icon && board[1][1] == player->icon &&  board[2][0] == player->icon) {
         return true;
     }
 
     return false;
 }
 
-bool check_for_draw (Board board) 
+bool check_for_draw (const Board board) 
 {
     // Check for empty spaces
     for (int row = 0; row < ROWS; row++){
@@ -39,12 +39,12 @@ bool check_for_draw (Board board)
     return true;
 }
 
-void edit_board (Board board, Player player, Coord coord)
+void edit_board (Board board, const Player *player, const Coord *coord)
 {
-    board[coord.row][coord.col] = player.icon;
+    board[coord->row][coord->col] = player->icon;
 }
 
-void print_board (Board board)
+void print_board (const Board board)
 {
     printf("       |       |       \n");
     printf("   %c   |   %c   |   %c   \n", board[0][0], board[0][1], board[0][2]);

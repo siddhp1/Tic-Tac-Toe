@@ -3,6 +3,6 @@
 
 #include "game.h"
 
-void get_agent_move (Board board, Player human, Player agent);
+void get_agent_move (Board board, const Player *human, const Player *agent);
 
 #endif
